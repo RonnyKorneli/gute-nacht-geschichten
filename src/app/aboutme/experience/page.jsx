@@ -1,7 +1,7 @@
 export default function Experience() {
     return (
      <div>
-        <h1>Experiencesss‚</h1>
+        <h1>Experiences</h1>
      </div>
     )
   }

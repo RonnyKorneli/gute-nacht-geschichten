@@ -82,7 +82,7 @@ function CreateStories(){
                     name="" 
                     id="" 
                     cols="30" 
-                    rows="10"
+                    rows="11"
                     placeholder='Body'    
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
                     onChange={(e) => setBody(e.target.value)}

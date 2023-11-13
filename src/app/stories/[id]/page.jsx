@@ -1,5 +1,5 @@
 async function getStory(id) {
-    const res = await fetch('http://localhost:4000/stories/' + id, {
+    const res = await fetch('http://localhost:2000/stories/' + id, {
         next: {
             revalidate: 60
         }

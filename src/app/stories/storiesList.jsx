@@ -4,16 +4,34 @@ import Link from 'next/link'
 // Make Stories clickable to go to the full Story
 
 async function getStories() {
-    const res = await fetch('http://localhost:4000/stories', {
-        next: {
-            revalidate: 0
+    try {
+        const res = await fetch('http://localhost:2000/stories', {
+            next: {
+                revalidate: 0
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
         }
-    });
-    return res.json();
+
+        const json = await res.json();
+        return json;
+    } catch (error) {
+        console.error("Error fetching stories:", error);
+        throw error; // Rethrow the error so it can be handled elsewhere
+    }
 }
 
 async function StoryList() {
-    const stories = await getStories();
+    let stories = [];
+    try {
+        const stories = await getStories();
+        // Do something with the stories data here
+    } catch (error) {
+        console.error("Error in StoryList:", error);
+        // Handle the error as needed
+    }
 
     return(
         <>
@@ -27,7 +45,7 @@ async function StoryList() {
                                 href={`/stories/${story.id}`}
                             >
                                 <h2 className="text-xl">{story.title}</h2>
-                                <p>{story.body.slice(0,500)}...</p>
+                                <p>{story.title}</p>
                             </Link>
                         </div>
                     )

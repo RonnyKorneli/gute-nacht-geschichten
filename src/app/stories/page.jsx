@@ -4,7 +4,7 @@ import React from 'react';
 import StoryList from './storiesList.jsx'
 
 
-export default function Stories(){
+export default async function Stories(){
 
     return (
         <>

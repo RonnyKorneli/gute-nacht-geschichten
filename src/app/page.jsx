@@ -4,7 +4,7 @@ import Stories from './geschichten/page.jsx'
 
 export default function Home() {
   return (
-   <div className='w-full  bg-white flex justify-center'>
+   <div className='w-full  bg-white flex justify-center items-center'>
       <Stories />
    </div>
   )

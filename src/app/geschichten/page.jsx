@@ -16,17 +16,15 @@ function Stories(){
         .then(response => response.json())
         .then(data => {
             setStories(data);    
-            console.log(data)
+            console.log(data,'inside fetch')
         });
-        
-
 
     }, []);
 
   
     return(
             
-            <div className='w-[80%] max-w[1200px] bg-slate-400 flex flex-col justify-center lg:flex-row'>
+            <div className='w-[664px] px-2  m-4 flex flex-col items-center flex-wrap lg:flex-row lg:w-[964px]'>
 
                 {
                    stories.map((story, index) => {

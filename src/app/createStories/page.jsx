@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import UploadImageToS3 from '../upload_image_s3/pages';
+
 
 function CreateStories(){
 
@@ -27,8 +27,6 @@ function CreateStories(){
         
     }
 
-    
-
     const submitHandler = async (e) => {
         e.preventDefault();
         const story = {
@@ -39,8 +37,6 @@ function CreateStories(){
             body: body,
             imageUrl: imageUrl
         };
-
-        console.log(story, "storyObject");
 
         try {
             //getting signed url from server
@@ -70,12 +66,12 @@ function CreateStories(){
             console.error("Error creating story!", error);
             throw error;
         }
-       
-
-       /*  setAuthor('');
+        //clear form
+        setAuthor('');
+        setBody('');
         setTitle('');
-        setReadTime(null);
-        setRecomendedAge(null); */
+        setReadTime('');
+        setRecomendedAge('');
     }
 
    
@@ -94,6 +90,7 @@ function CreateStories(){
                     name='title'
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
                     placeholder='Title'
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <input 
@@ -101,6 +98,7 @@ function CreateStories(){
                     name='author'
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
                     placeholder='Author'
+                    value={author}
                     onChange={(e) => setAuthor(e.target.value)}
 
                 />
@@ -109,6 +107,7 @@ function CreateStories(){
                     name='readTime'
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
                     placeholder='Read Time'
+                    value={readTime}
                     onChange={(e) => setReadTime(e.target.value)}
 
                 />
@@ -117,6 +116,7 @@ function CreateStories(){
                     name='recomendedAge'
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
                     placeholder='Recomended Age'
+                    value={recomendedAge}
                     onChange={(e) => setRecomendedAge(e.target.value)}
 
                 />
@@ -127,17 +127,16 @@ function CreateStories(){
                     rows="11"
                     placeholder='Body'    
                     className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
+                    value={body}
                     onChange={(e) => setBody(e.target.value)}
                 >
                 </textarea>
-
                 <input 
                     type="file" 
                     accept="image/*"
                     onChange={handleFileChange} 
                     name="image-file"
                 />
-
                 <button
                     className=' w-[90%] bg-blue-500 hover:bg-blue-800 text-white p-2 rounded-lg'
                     onClick={submitHandler}
@@ -147,9 +146,6 @@ function CreateStories(){
 
             </form>
 
-           
-
-          
         </div>
     )
 }

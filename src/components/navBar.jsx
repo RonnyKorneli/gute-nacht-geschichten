@@ -4,30 +4,35 @@ export default function NavBar() {
 
     return(
         <>
-            <nav className='w-full h-[100px] flex justify-between items-center bg-slate-400'>
-                <div className="w-[150px] h-[100px] flex justify-center items-center bg-slate-200">
-                    <h1>Logo</h1>
+            <nav className='w-full h-[80px] flex justify-between items-center '>
+                <div className="w-[400px] h-full flex justify-center items-center">
+                    <Link href='/'>
+                        <h1 className="text-4xl">Julian`s Abenteuer</h1>
+                    </Link>
                 </div>
-                <div className='flex justify-between items-center'>
-                    <div className='m-4 rounded-xl w-[350px] h-[200]'>
+                <div className='flex w-[80%] justify-evenly items-center display-none'>
+                    <div className=''>
                         <Link href='/'>
-                            <h3>Home</h3>
+                            <h3 className="font-light">Wer ist Julian?</h3>
                         </Link>
                     </div>
-                    <div className='m-4 rounded-xl w-[350px] h-[200]'>
+                    <div className=''>
                         <Link href='/createStories'>
-                            <h3>Erstellen</h3>
+                            <h3>Schlafenszeit-Geschichten</h3>
                         </Link>
                     </div>
-                    <div className='m-4 rounded-xl w-[350px] h-[200]'>
+                    <div className=''>
                         <Link href='/geschichten/1'>
-                            <h3>Meine Geschichten</h3>
+                            <h3>Weihnachts-Geschichten</h3>
                         </Link>
                     </div>
-                    <div className='m-4 rounded-xl w-[350px] h-[200]'>
-                        <Link href='/geschichten/1'>
-                            <h3>Mein Profil</h3>
-                        </Link>
+                    <div 
+                        className='bg-blue py-4 text-white px-6 flex justify-center items-center rounded-md'
+                        role="button"
+                    >
+                            <Link href='/geschichten/1'>
+                                <h3>Frische Geschichten</h3>
+                            </Link>
                     </div>
                 </div>
             </nav>

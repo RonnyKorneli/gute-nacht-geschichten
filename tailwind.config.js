@@ -9,10 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors:{ 
-        'gray': '#4C4556',
-        'amber': '#872642',
-        'gold':'#F6C026',
-        'clear-blue':'#A0D3F9'
+        'blue': '#7071E8',
+        'purple': '#C683D7',
+        'pink':'#ED9ED6',
+        'peach':'#FFC7C7'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

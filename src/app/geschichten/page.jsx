@@ -16,15 +16,15 @@ function Stories(){
         .then(response => response.json())
         .then(data => {
             setStories(data);    
-            console.log(data,'inside fetch')
+            console.log(data[0]._id,'inside fetch')
         });
 
     }, []);
 
-  
+
     return(
             
-            <div className='w-[664px] px-2  m-4 flex flex-col items-center flex-wrap lg:flex-row lg:w-[964px]'>
+            <div className='w-full px-2  m-4 flex flex-col  items-center flex-wrap lg:flex-row lg:w-[964px]'>
 
                 {
                    stories.map((story, index) => {
@@ -32,6 +32,7 @@ function Stories(){
                             
                            <StoryCard
                             key={index}
+                            _id={story._id}
                             title={story.title}
                             body={story.body}
                             imageUrl={story.imageUrl}

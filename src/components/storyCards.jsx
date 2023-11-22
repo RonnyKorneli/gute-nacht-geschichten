@@ -13,10 +13,9 @@ import Link from 'next/link';
 
 
 
-function  StoryCard({ title, imageUrl, priority }) {
+function  StoryCard({ title, _id, imageUrl, priority }) {
 
-
-
+    console.log(_id, 'id inside storyCard')
     return(
 
         <div 
@@ -24,15 +23,18 @@ function  StoryCard({ title, imageUrl, priority }) {
             datatype='thumbnail'
         >
             <Link 
-                href="/story"
+                href={`/stories/${_id}`}
                 className='flex flex-col justify-center items-center h-[600px] w-[600px] bg-white rounded-lg relative lg:h-[300px] lg:w-[300px]'
             >
                     <Image
                         src={imageUrl}
+                        className='rounded-lg m-0 object-cover'
                         fill
+                        placeholder='blur'
+                        blurDataURL={imageUrl}
                         alt="Picture of the author"
-                        className='rounded-lg m-0'
-                />
+                        _id={_id}
+                    />
             </Link>
             <h3 className='text-start self-start w-[80%] mt-3 p-0 text-2xl'>{title}</h3>
             

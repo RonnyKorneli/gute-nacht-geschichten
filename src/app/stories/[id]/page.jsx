@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 async function getStory(id) {
-    const res = await fetch('http://localhost:2000/stories/' + id, {
+    const res = await fetch(`http://localhost:2000/api/stories/get-story/${id}`, {
         next: {
             revalidate: 60
         }
@@ -8,15 +10,28 @@ async function getStory(id) {
 }
 
 async function Story({params}){
-    const story = await getStory(params.id);
+    const id = params.id;
+    const story = await getStory(id);
+    console.log(id, 'idddddd inside page', params, 'params')
 
 
     return(
         <>
-            <h1>Story</h1>
-            {
-                story.body
-            }
+            <div className="w-[80%] h-[700px] relative">
+                <Image
+                    src={story.imageUrl}
+                    className='rounded-lg m-0 object-cover object-center'
+                    fill
+                    placeholder='blur'
+                    blurDataURL={story.imageUrl}
+                    alt="Picture of the author"
+                    _id={id}
+
+                />
+            </div>
+            
+            <p>{story.body}</p>
+            
             
         </>
     )

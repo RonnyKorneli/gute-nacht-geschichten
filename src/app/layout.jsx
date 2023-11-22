@@ -4,7 +4,7 @@ import NavBar from '@/components/navBar'
 
 const quicksand = Quicksand({ 
   subsets: ['latin'],
-  weight:['700'],
+  weight:['300','400','500','700'],
 })
 
 export const metadata = {

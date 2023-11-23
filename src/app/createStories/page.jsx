@@ -138,7 +138,7 @@ function CreateStories(){
                     name="image-file"
                 />
                 <button
-                    className=' w-[90%] bg-blue-500 hover:bg-blue-800 text-white p-2 rounded-lg'
+                    className=' w-[90%] bg-blue-500 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
                     onClick={submitHandler}
                 >
                     Submit Story

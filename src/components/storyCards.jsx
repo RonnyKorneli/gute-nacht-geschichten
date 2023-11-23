@@ -19,16 +19,16 @@ function  StoryCard({ title, _id, imageUrl, priority }) {
     return(
 
         <div 
-            className='flex flex-col justify-center m-2 items-center w-[600px] h-[600px] lg:h-[300px] lg:w-[300px]  bg-white rounded-lg lg:m-2'
+            className='flex flex-col justify-center px-6 items-center w-[95%] mb-12  lg:h-auto lg:w-[300px] lg:m-2'
             datatype='thumbnail'
         >
             <Link 
                 href={`/stories/${_id}`}
-                className='flex flex-col justify-center items-center h-[600px] w-[600px] bg-white rounded-lg relative lg:h-[300px] lg:w-[300px]'
+                className='w-full self-start relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
             >
                     <Image
                         src={imageUrl}
-                        className='rounded-lg m-0 object-cover'
+                        className='rounded-3xl object-cover'
                         fill
                         placeholder='blur'
                         blurDataURL={imageUrl}
@@ -36,9 +36,9 @@ function  StoryCard({ title, _id, imageUrl, priority }) {
                         _id={_id}
                     />
             </Link>
-            <h3 className='text-start self-start w-[80%] mt-3 p-0 text-2xl'>{title}</h3>
-            
-
+            <div className='w-full lg:mb-24 lg:relative '>
+                <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>{title}</h3>
+            </div>
         </div>
     )   
 }

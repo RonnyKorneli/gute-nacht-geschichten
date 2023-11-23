@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import StoryCard from '../../components/storyCards';
+import HeroImage from '../../components/heroImage';
 
 
 
@@ -24,28 +25,31 @@ function Stories(){
 
     return(
             
-            <div className='w-full px-2  m-4 flex flex-col  items-center flex-wrap lg:flex-row lg:w-[964px]'>
-
+        <div>
+            <HeroImage 
+                imageUrl='/BoyReadingBook.jpg'
+                className='object-cover object-left-bottom lg:object-center'
+            />
+            <div className='w-full flex flex-col mt-[330px] relative bg-white pt-20 items-center justify-center flex-wrap lg:flex-row md:mt-[630px]'>
                 {
                    stories.map((story, index) => {
                         return(
-                            
                            <StoryCard
                             key={index}
                             _id={story._id}
+                            recomendedAge={story.recomendedAge}
                             title={story.title}
                             body={story.body}
                             imageUrl={story.imageUrl}
                             author={story.author}
                             readTime={story.readTime}
-                            recomendedAge={story.recomendedAge}
                             reating={story.reating}
                            />
                         )
                    })
                 }
-    
             </div>
+        </div>
         )
     
 }

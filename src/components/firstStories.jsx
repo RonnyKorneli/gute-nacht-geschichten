@@ -8,7 +8,7 @@ export default  function FirstStories() {
    
 
     return(
-        <main className='w-full  mt-[930px] z-20 flex bg-white flex-col justify-center items-center'>
+        <main className='w-full  mt-[930px] pt-20 z-20 flex bg-white rounded-3xl flex-col justify-center items-center'>
             <div className=' flex flex-col justify-center items-center w-full lg:flex lg:flex-row mb-8'>
                 <div 
                     className='flex flex-col justify-center mt-6 px-6 items-center w-[95%] mb-12  lg:h-auto lg:w-[300px] lg:m-2'

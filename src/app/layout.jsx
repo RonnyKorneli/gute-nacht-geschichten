@@ -1,6 +1,7 @@
 import { Quicksand } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/navBar'
+import Footer from '@/components/footer'
 
 const quicksand = Quicksand({ 
   subsets: ['latin'],
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       <body className={quicksand.className}>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   )

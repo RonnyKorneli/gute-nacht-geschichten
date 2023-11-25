@@ -1,3 +1,4 @@
+'use client'
 import FirstStories from '../components/firstStories.jsx'
 import HeroImage from '../components/heroImage.jsx'
 

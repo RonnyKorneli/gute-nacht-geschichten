@@ -130,6 +130,7 @@ function CreateStories(){
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 >
+
                 </textarea>
                 <input 
                     type="file" 

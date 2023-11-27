@@ -12,23 +12,3 @@ body{
 
 }
 
-.tiptap{
-    background-color: aliceblue;
-    width: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 200px;
-    border: 2px solid black;
-}
-.buttonItalic{
-    width: 100px;
-    height: 20px;
-    background-color: #7071E8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    margin-bottom: -190px;
-}

@@ -1,3 +1,7 @@
+
+import typography from '@tailwindcss/typography'
+
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
@@ -21,5 +25,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import TextEditor from '../../components/TextEditor.jsx'
 
 
 function CreateStories(){
@@ -12,11 +13,8 @@ function CreateStories(){
     const [recomendedAge, setRecomendedAge] = useState('');
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
+    const [textEditor, setTextEditor] = useState('');
 
-    
-    console.log(imageUrl, "imageUrl");
-    console.log(author, "author");
-    console.log(file, "File");
 
     const handleFileChange = async (e) => {
         e.preventDefault()
@@ -25,6 +23,12 @@ function CreateStories(){
 
         console.log(file, "chnges herererererer");
         
+    }
+
+    const textEditorHandler = (text) => {
+        const textEditorContent = text;
+        setBody(textEditorContent);
+
     }
 
     const submitHandler = async (e) => {
@@ -77,7 +81,7 @@ function CreateStories(){
    
 
     return (
-        <div className='w-full bg-slate-400 h-full flex justify-start items-center flex-col'>
+        <div className='w-full h-full flex justify-start items-center flex-col'>
             <h1 className='text-xl mb-12 mt-12'>Create Stories</h1>
             <form 
                 action=""
@@ -120,18 +124,10 @@ function CreateStories(){
                     onChange={(e) => setRecomendedAge(e.target.value)}
 
                 />
-                <textarea 
-                    name="story" 
-                    id="" 
-                    cols="30" 
-                    rows="11"
-                    placeholder='Body'    
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                >
 
-                </textarea>
+                <TextEditor
+                    textEditorHandler={textEditorHandler}
+                />
                 <input 
                     type="file" 
                     accept="image/*"
@@ -139,7 +135,7 @@ function CreateStories(){
                     name="image-file"
                 />
                 <button
-                    className=' w-[90%] bg-blue-500 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
+                    className=' w-[90%] bg-purple hover:bg-peach hover:text-black mt-6 mb-10 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
                     onClick={submitHandler}
                 >
                     Submit Story

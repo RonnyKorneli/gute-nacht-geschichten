@@ -17,12 +17,13 @@ async function Story({params}){
 
     return(
         <>  
-            <div className="w-full flex flex-col justify-center items-center prose">
+            <div className="w-full flex flex-col justify-center items-center prose md:max-w-full">
+
                 <h1 className="text-4xl md:text-6xl text-center w-[90%] md:w-[600px] font-[700] mt-32 mb-10">{story.title}</h1>
-                <div className="w-full h-[400px] md:h-[700px] md:w-5/6 relative mb-6">
+                <div className="w-full h-[400px] md:h-[700px] md:w-full relative mb-6">
                     <Image
                         src={story.imageUrl}
-                        className='md:rounded-3xl m-0 object-cover object-center'
+                        className='m-0 object-cover object-center'
                         fill
                         placeholder='blur'
                         blurDataURL={story.imageUrl}
@@ -31,9 +32,11 @@ async function Story({params}){
 
                     />
                 </div>
-                
-                <HtmlRenderer htmlContent={story.body} />
+                <div className="flex justify-center w-[95%]">
+                    <HtmlRenderer htmlContent={story.body} />
+                </div>
                 <FirstStories />
+
             </div>
         </>
     )

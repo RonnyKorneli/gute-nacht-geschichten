@@ -8,7 +8,7 @@ export default  function FirstStories() {
    
 
     return(
-        <main className='w-full  mt-[930px] pt-20 z-20 flex bg-white rounded-3xl flex-col justify-center items-center'>
+        <main className='w-full pt-20 z-20 flex bg-white rounded-3xl flex-col justify-center items-center'>
             <div className=' flex flex-col justify-center items-center w-full lg:flex lg:flex-row mb-8'>
                 <div 
                     className='flex flex-col justify-center mt-6 px-6 items-center w-[95%] mb-12  lg:h-auto lg:w-[300px] lg:m-2'
@@ -29,7 +29,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 1</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 1</h3>
                     </div>
                 </div>
                 <div 
@@ -51,7 +51,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 2</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 2</h3>
                     </div>
                 </div>
                 <div 
@@ -73,7 +73,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 3</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 3</h3>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 4</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 4</h3>
                     </div>
                 </div>
                 <div 
@@ -119,7 +119,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 5</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 5</h3>
                     </div>
                 </div>
                 <div 
@@ -141,7 +141,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 6</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 6</h3>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 7</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 7</h3>
                     </div>
                 </div>
                 <div 
@@ -187,7 +187,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 8</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 8</h3>
                     </div>
                 </div>
                 <div 
@@ -209,7 +209,7 @@ export default  function FirstStories() {
                          />
                     </Link>
                     <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute self-start mt-2 text-2xl font-[700] '>Title 9</h3>
+                        <h3 className='text-start lg:absolute self-start top-2 text-2xl font-[700] '>Title 9</h3>
                     </div>
                 </div>
             </div>

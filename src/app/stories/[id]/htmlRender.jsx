@@ -7,7 +7,7 @@ const HtmlRenderer = ({ htmlContent }) => {
   };
 
   return (
-    <div>
+    <div className='w-[80%]'>
       {/* Use dangerouslySetInnerHTML to render the HTML content */}
       <div dangerouslySetInnerHTML={createMarkup()} />
     </div>

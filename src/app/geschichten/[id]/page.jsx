@@ -18,6 +18,9 @@ async function Story({params}){
     const storyBody =  await story.body;
     const storyIntroduction = await story.introduction;
 
+
+    console.log(typeof storyBody, 'story inside story.jsx');
+
     return(
         <>  
             <div className="w-full flex flex-col justify-center items-center prose md:max-w-full">

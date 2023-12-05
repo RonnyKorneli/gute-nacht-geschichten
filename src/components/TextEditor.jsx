@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Underline } from '@tiptap/extension-underline'
 import { Link } from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -10,7 +10,7 @@ import StarterKit from '@tiptap/starter-kit'
 
 
 
-const TextEditor = (props) => {
+const TextEditor = ({textEditorHandler, initialMarkdown}) => {
 
   const [editorContent, setEditorContent] = useState(null)
   
@@ -71,10 +71,11 @@ const TextEditor = (props) => {
             class: 'border border-slate-300 p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto prose max-w-none outline-none',
         },
       },
-    content: '',
+    content: initialMarkdown,
     onUpdate({ editor }) {
       const htmlContent = editor.getHTML();
-      props.textEditorHandler(htmlContent)
+      console.log(htmlContent);
+      textEditorHandler(htmlContent)
     },
     extensions: [
         StarterKit.configure({
@@ -126,7 +127,12 @@ const TextEditor = (props) => {
         })
     ],
   })
-  
+
+  useEffect(() => {
+    if (editor && initialMarkdown) {
+      editor.commands.setContent(initialMarkdown);
+    }
+  }, [initialMarkdown, editor]);
 
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href
@@ -209,6 +215,7 @@ const TextEditor = (props) => {
             >Break</button>
 
         </section>
+        <div className="text-editor" ref={editor.dom} /> {/* Add this div */}
         <EditorContent editor={editor} />
 
     </div>

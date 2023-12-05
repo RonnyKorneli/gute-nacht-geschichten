@@ -20,10 +20,7 @@ function CreateStories(){
     const handleFileChange = async (e) => {
         e.preventDefault()
         const file = e.target.files[0];
-        setFile(file);
-
-        console.log(file, "chnges herererererer");
-        
+        setFile(file);        
     }
 
     const mainStoryHandler = (text) => {

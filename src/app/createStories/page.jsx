@@ -13,7 +13,8 @@ function CreateStories(){
     const [recomendedAge, setRecomendedAge] = useState('');
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
-    const [textEditor, setTextEditor] = useState('');
+    const [mainStory, setMainStory] = useState('');
+    const [introductionToStory, setIntroductionToStory] = useState('');
 
 
     const handleFileChange = async (e) => {
@@ -25,10 +26,15 @@ function CreateStories(){
         
     }
 
-    const textEditorHandler = (text) => {
+    const mainStoryHandler = (text) => {
         const textEditorContent = text;
-        setBody(textEditorContent);
+        setMainStory(textEditorContent);
 
+    }
+
+    const introductionToStoryHandler = (text) => {
+        const textEditorContent = text;
+        setIntroductionToStory(textEditorContent);
     }
 
     const submitHandler = async (e) => {
@@ -38,7 +44,8 @@ function CreateStories(){
             author: author, 
             readTime: readTime,
             recomendedAge: recomendedAge,
-            body: body,
+            body: mainStory,
+            introduction: introductionToStory,
             imageUrl: imageUrl
         };
 
@@ -124,10 +131,18 @@ function CreateStories(){
                     onChange={(e) => setRecomendedAge(e.target.value)}
 
                 />
-
-                <TextEditor
-                    textEditorHandler={textEditorHandler}
-                />
+                <div className='width-full h-auto'>
+                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Introduction here (6-9 Sentences)</h3>
+                     <TextEditor
+                        textEditorHandler={introductionToStoryHandler}
+                    />
+                </div>
+                <div className='width-full h-auto'>
+                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Story here</h3>
+                     <TextEditor
+                        textEditorHandler={mainStoryHandler}
+                    />
+                </div>
                 <input 
                     type="file" 
                     accept="image/*"

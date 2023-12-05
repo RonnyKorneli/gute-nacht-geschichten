@@ -13,9 +13,10 @@ import Link from 'next/link';
 
 
 
-function  StoryCard({ title, _id, imageUrl, priority }) {
+function  StoryCard({ title, _id, imageUrl, priority, urlSection }) {
 
-    console.log(_id, 'id inside storyCard')
+        console.log(imageUrl, 'imageUrl inside storyCard')
+
     return(
 
         <div className='flex flex-col justify-center relative  items-center w-[95%] mb-12 bg-white lg:h-auto lg:w-[300px] lg:m-2'>
@@ -24,7 +25,7 @@ function  StoryCard({ title, _id, imageUrl, priority }) {
                 datatype='thumbnail'
             >
                 <Link 
-                    href={`/stories/${_id}`}
+                    href={`/${urlSection}/${_id}`}
                     className='w-full self-start  md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
                 >
                         <Image

@@ -1,6 +1,8 @@
 import React from 'react';
 
 const HtmlRenderer = ({ htmlContent }) => {
+const content = htmlContent
+
   // Create a function to safely render the HTML content
   const createMarkup = () => {
     return { __html: htmlContent };

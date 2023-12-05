@@ -1,14 +1,12 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import StoryCard from '../../components/storyCards';
-import HeroImage from '../../components/heroImage';
+import StoryCard from '../../../components/storyCards';
+import HeroImage from '../../../components/heroImage';
 
 
 
-function Stories({params}){
-
-    console.log(params, 'params inside stories')
+function UpdateStories({params}){
 
     const [stories, setStories] = useState([]);
     
@@ -27,16 +25,14 @@ function Stories({params}){
     return(
             
         <div className='w-full' >
-            <HeroImage 
-                imageUrl='/BoyReadingBook.jpg'
-                className='object-cover object-left-bottom lg:object-center'
-                bubbleStyle="mt-[90px] ml-[-230px]  w-[130px] z-20  h-[130px] font-[500] text-sm text-white bg-pink text-black rounded-full fixed top-0 text-center flex justify-center items-center md:text-3xl md:font-[700]  md:w-[300px] md:h-[300px] md:mr-24"
-            />
-            <div className='w-full flex flex-col mt-[600px] rounded-3xl bg-white relative items-center justify-center md:mt-[630px]'>
+           
+            <div className='w-full flex flex-col mt-[100px] rounded-3xl bg-white relative items-center justify-center md:mt-[130px]'>
+                <h1 className='text-8xl font-[700]'>UPDATE Story</h1>
                 <div className='flex flex-col w-full rounded-3xl relative pt-20 items-center justify-center flex-wrap md:flex-row md:justify-evenly  lg:w-[80%]'>
                 {
                    stories.map((story, index) => {
                         return(
+                            
                            <StoryCard
                             key={index}
                             _id={story._id}
@@ -46,8 +42,8 @@ function Stories({params}){
                             imageUrl={story.imageUrl}
                             author={story.author}
                             readTime={story.readTime}
-                            rating={story.reating}
-                            urlSection='geschichten'
+                            reating={story.rating}
+                            urlSection={'geschichten/update-stories'}
                            />
                         )
                    })
@@ -59,7 +55,7 @@ function Stories({params}){
     
 }
 
-export default Stories;
+export default UpdateStories;
 
 
 

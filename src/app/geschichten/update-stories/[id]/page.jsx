@@ -14,8 +14,6 @@ async function getStory(id) {
 
 function UpdateOneStory({params}){
 
-    console.log(params.id, 'params');
-
     const [story, setStory] = useState('');
     const [storyBody, setStoryBody] = useState('');
     const [storyIntroduction, setStoryIntroduction] = useState('');
@@ -39,93 +37,124 @@ function UpdateOneStory({params}){
 
     const submitHandler = async (e) => {
         e.preventDefault();
-       
-            let story = {
-                title: title, 
-                author: author, 
-                readTime: readTime,
-                recomendedAge: recomendedAge,
-                body: storyBody,
-                introduction: storyIntroduction,
-                imageUrl: imageUrl,
-                storyId: storyId
-            };
-    
-            try {
-                if(file === !null){
-                    //getting signed url from server
-                    const {url} = await fetch('http://localhost:2000/api/stories/s3Url').then(res => res.json());
-                    console.log(file, 'i am hererererererer');
-                    //Upload image to S3
-                    await fetch(url, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': "multi-part/form-data"
-                        },
-                        body: file
-                    });
-                    const imageUrl = url.split('?')[0];
-                    story = {...story, imageUrl: imageUrl};
-                }
-                    const res = await fetch(`http://localhost:2000/api/stories/update-one-story/${id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(story)
-                    });
-                    const json = await res.json();
-                    console.log(json);
-                
-            } catch (error) {
-                console.error("Error creating story!", error);
-                throw error;
-            }
-            //clear form
-            setAuthor('');
-            setStoryBody('');
-            setTitle('');
-            setReadTime('');
-            setRecomendedAge('');
         
-
-        try {
-            //getting signed url from server
-            const {url} = await fetch('http://localhost:2000/api/stories/s3Url').then(res => res.json());
-            console.log(url);
-            //Upload image to S3
-            await fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': "multi-part/form-data"
-                },
-                body: file
-            });
-            const imageUrl = url.split('?')[0];
-            const newStory = {...story, imageUrl: imageUrl};
-           
-            const res = await fetch('http://localhost:2000/api/stories/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newStory)
-            });
-            const json = await res.json();
-            console.log(json);
-        } catch (error) {
-            console.error("Error creating story!", error);
-            throw error;
-        }
-        //clear form
-        setAuthor('');
-        setStoryBody('');
-        setTitle('');
-        setReadTime('');
-        setRecomendedAge('');
     }
 
-    
+    const titleHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            title: title,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-title/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
+    const authorHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            author: author,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-author/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
+    const readTimeHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            readTime: readTime,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-read-time/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
+    const recomendedAgeHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            recomendedAge: recomendedAge,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-recomended-age/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
+    const sendStoryHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            body: storyBody,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-body/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
+    const mainStoryHandler = (text) => {
+        const textEditorContent = text;
+        setStoryBody(textEditorContent);
+
+    }
 
     useEffect(() => {
         getStory(id)
@@ -146,11 +175,7 @@ function UpdateOneStory({params}){
             });
     }, [id]);
 
-    const mainStoryHandler = (text) => {
-        const textEditorContent = text;
-        setStoryBody(textEditorContent);
-
-    }
+    
 
     const introductionToStoryHandler = (text) => {
         const textEditorContent = text;
@@ -165,48 +190,77 @@ function UpdateOneStory({params}){
                 name="createStory"
                 className='w-1/2 bg-white p-5 rounded-lg flex flex-col justify-center items-center'
             >
+                <div className="flex w-full justify-between">
+                    <input 
+                        type="text" 
+                        name='title'
+                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        placeholder='Title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <button 
+                        onClick={titleHandler}
+                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
+                    >UPDATE</button>
+                </div>
+                <div className="flex w-full justify-between">
+                    <input 
+                        type="text" 
+                        name='author'
+                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        placeholder='Author'
+                        value={author}
+                        onChange={(e) => setAuthor(e.target.value)}
+
+                    />
+                     <button 
+                            onClick={authorHandler}
+                            className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
+                    >UPDATE</button>
+                </div>
+                <div className="flex w-full justify-between">
+                    <input 
+                        type="number" 
+                        name='readTime'
+                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        placeholder='Read Time'
+                        value={readTime}
+                        onChange={(e) => setReadTime(e.target.value)}
+
+                    />
+                    <button 
+                        onClick={readTimeHandler}
+                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
+                    >UPDATE</button>
+                </div>
+               
+                <div className="flex w-full justify-between">
+                    <input 
+                        type="number" 
+                        name='recomendedAge'
+                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        placeholder='Recomended Age'
+                        value={recomendedAge}
+                        onChange={(e) => setRecomendedAge(e.target.value)}
+
+                    />
+                    <button 
+                        onClick={recomendedAgeHandler}
+                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
+                    >UPDATE</button>
+                </div>
                 
-                <input 
-                    type="text" 
-                    name='title'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
-                    placeholder='Title'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <input 
-                    type="text" 
-                    name='author'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
-                    placeholder='Author'
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-
-                />
-                <input 
-                    type="number" 
-                    name='readTime'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
-                    placeholder='Read Time'
-                    value={readTime}
-                    onChange={(e) => setReadTime(e.target.value)}
-
-                />
-                <input 
-                    type="number" 
-                    name='recomendedAge'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
-                    placeholder='Recomended Age'
-                    value={recomendedAge}
-                    onChange={(e) => setRecomendedAge(e.target.value)}
-
-                />
                  <div className='width-full h-auto'>
                     <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Story here</h3>
                      <TextEditor
                         initialMarkdown={storyBody} 
                         textEditorHandler={mainStoryHandler}
                     />
+                     <button 
+                        onClick={sendStoryHandler}
+                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
+                    >UPDATE</button>
                 </div>
                 <div className='width-full h-auto'>
                     <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Introduction here (6-9 Sentences)</h3>
@@ -215,6 +269,7 @@ function UpdateOneStory({params}){
                         textEditorHandler={introductionToStoryHandler}
                     />
                 </div>
+               
                 <input 
                     type="file" 
                     accept="image/*"

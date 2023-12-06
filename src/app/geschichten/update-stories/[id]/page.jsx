@@ -27,17 +27,10 @@ function UpdateOneStory({params}){
 
     const id = params.id;
 
-    console.log(file, 'filegklgkjekgjerkl');
-
     const handleFileChange = async (e) => {
         e.preventDefault()
         const file = e.target.files[0];
         setFile(file);        
-    }
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        
     }
 
     const titleHandler = async (e) => {
@@ -150,6 +143,28 @@ function UpdateOneStory({params}){
         }
     }
 
+    const sendIntroHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            introduction: storyIntroduction,
+        }
+        const response = await fetch(`http://localhost:2000/api/stories/update-intro/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            //send some alert for user to see the update was successful
+            const responseData = await response.json();
+            console.log(responseData); // This will contain the response data from your server
+        } else {
+            console.log('Error:', response.status);
+        }
+    }
+
     const mainStoryHandler = (text) => {
         const textEditorContent = text;
         setStoryBody(textEditorContent);
@@ -183,108 +198,99 @@ function UpdateOneStory({params}){
     }
 
     return(
-        <div className='w-full h-full flex justify-start items-center flex-col'>
-            <h1 className='text-xl mb-12 mt-12'>Create Stories</h1>
-            <form 
-                action=""
-                name="createStory"
-                className='w-1/2 bg-white p-5 rounded-lg flex flex-col justify-center items-center'
-            >
-                <div className="flex w-full justify-between">
-                    <input 
-                        type="text" 
-                        name='title'
-                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
-                        placeholder='Title'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <button 
-                        onClick={titleHandler}
-                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
-                    >UPDATE</button>
-                </div>
-                <div className="flex w-full justify-between">
-                    <input 
+        <div className='w-full h-full flex justify-start mt-[150px] items-center flex-col'>
+            <div>
+                <h1 className="font-[700] text-5xl mb-12 ">UPDATE { `"${title}"` }</h1>
+                 <div className="flex w-full">
+                     <input 
+                         type="text" 
+                         name='title'
+                         className='border mb-3 w-[90%] border-gray-400 p-2 rounded-l-lg'
+                         placeholder='Title'
+                         value={title}
+                         onChange={(e) => setTitle(e.target.value)}
+                     />
+                     <button 
+                         onClick={titleHandler}
+                         className="font-1xl font-[700]  bg-blue w-[290px] h-[42px] text-white rounded-r-lg"
+                     >UPDATE TITLE</button>
+                 </div>
+                 <div className="flex w-full">
+                     <input 
                         type="text" 
                         name='author'
-                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        className='border mb-3 w-[90%] border-gray-400 p-2 rounded-l-lg'
                         placeholder='Author'
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
-
-                    />
+                     />
+                      <button 
+                        onClick={authorHandler}
+                        className="font-1xl font-[700]  bg-blue w-[290px] h-[42px] text-white rounded-r-lg"
+                     >UPDATE AUTHOR</button>
+                 </div>
+                 <div className="flex w-full">
+                     <input 
+                         type="number" 
+                         name='readTime'
+                         className='border mb-3 w-[90%] border-gray-400 p-2 rounded-l-lg'
+                         placeholder='Read Time'
+                         value={readTime}
+                         onChange={(e) => setReadTime(e.target.value)}
+                     />
                      <button 
-                            onClick={authorHandler}
-                            className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
-                    >UPDATE</button>
-                </div>
-                <div className="flex w-full justify-between">
-                    <input 
-                        type="number" 
-                        name='readTime'
-                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
-                        placeholder='Read Time'
-                        value={readTime}
-                        onChange={(e) => setReadTime(e.target.value)}
-
-                    />
-                    <button 
-                        onClick={readTimeHandler}
-                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
-                    >UPDATE</button>
-                </div>
-               
-                <div className="flex w-full justify-between">
-                    <input 
+                         onClick={readTimeHandler}
+                         className="font-1xl font-[700] bg-blue w-[290px] h-[42px] text-white rounded-r-lg"
+                     >UPDATE READTIME</button>
+                 </div>
+                 <div className="flex w-full justify-between">
+                     <input 
                         type="number" 
                         name='recomendedAge'
-                        className='border mb-3 w-[70%] border-gray-400 p-2 rounded-lg'
+                        className='border mb-3 w-[90%] border-gray-400 p-2 rounded-l-lg'
                         placeholder='Recomended Age'
                         value={recomendedAge}
                         onChange={(e) => setRecomendedAge(e.target.value)}
-
-                    />
-                    <button 
-                        onClick={recomendedAgeHandler}
-                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
-                    >UPDATE</button>
-                </div>
-                
-                 <div className='width-full h-auto'>
-                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Story here</h3>
-                     <TextEditor
-                        initialMarkdown={storyBody} 
-                        textEditorHandler={mainStoryHandler}
-                    />
+                     />
                      <button 
-                        onClick={sendStoryHandler}
-                        className="font-1xl font-[500] border border-black bg-blue w-[100px] h-[40px] text-white rounded-xl"
-                    >UPDATE</button>
-                </div>
-                <div className='width-full h-auto'>
-                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Introduction here (6-9 Sentences)</h3>
-                     <TextEditor
-                        initialMarkdown={storyIntroduction} 
-                        textEditorHandler={introductionToStoryHandler}
-                    />
-                </div>
-               
-                <input 
-                    type="file" 
-                    accept="image/*"
-                    onChange={handleFileChange} 
-                    name="image-file"
-                />
-                <button
-                    className=' w-[90%] bg-blue hover:bg-peach hover:text-black mt-6 mb-10 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
-                    onClick={submitHandler}
-                >
-                    Submit Story
-                </button>
-
-            </form>
-
+                         onClick={recomendedAgeHandler}
+                         className="font-1xl font-[700] bg-blue w-[290px] h-[42px] text-white rounded-r-lg"
+                     >UPDATE RECOMENDED AGE</button>
+                 </div>
+                  <div className='width-full flex mt-16 flex-col h-auto'>
+                    <div className="flex flex-col">
+                         <TextEditor
+                            initialMarkdown={storyBody} 
+                            textEditorHandler={mainStoryHandler}
+                            styles='border border-gray-400 p-4 h-[50vh] overflow-y-auto prose max-w-none outline-none'
+                        />
+                         <button 
+                            onClick={sendStoryHandler}
+                            className="font-1xl font-[700]  bg-blue w-full h-[60px] text-white rounded-b-lg"
+                        >UPDATE STORY</button>
+                     </div>
+                 </div>
+                 <div className='width-full mt-16 mb-12 h-auto'>
+                     <div>
+                        <TextEditor
+                            initialMarkdown={storyIntroduction} 
+                            textEditorHandler={introductionToStoryHandler}
+                            styles='border prose:border-gray-400 h-[10rem] p-4 overflow-y-auto prose max-w-none outline-none'
+                        />
+                        <button 
+                            onClick={sendIntroHandler}
+                            className="font-1xl font-[700]  bg-blue w-full h-[60px] text-white rounded-b-lg"
+                        >UPDATE INTRO</button>
+                     </div>
+                 </div>
+                 <input 
+                     type="file" 
+                     accept="image/*"
+                     onChange={handleFileChange} 
+                     name="image-file"
+                     className="mb-20"
+                 />
+            </div>
         </div>
     )
 }

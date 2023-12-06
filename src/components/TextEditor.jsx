@@ -10,7 +10,7 @@ import StarterKit from '@tiptap/starter-kit'
 
 
 
-const TextEditor = ({textEditorHandler, initialMarkdown}) => {
+const TextEditor = ({textEditorHandler, initialMarkdown, styles}) => {
 
   const [editorContent, setEditorContent] = useState(null)
   
@@ -68,7 +68,7 @@ const TextEditor = ({textEditorHandler, initialMarkdown}) => {
   const editor = useEditor({
     editorProps: {
         attributes: {
-            class: 'border border-slate-300 p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto prose max-w-none outline-none',
+            class: styles,
         },
       },
     content: initialMarkdown,
@@ -129,7 +129,7 @@ const TextEditor = ({textEditorHandler, initialMarkdown}) => {
   })
 
   useEffect(() => {
-    if (editor && initialMarkdown) {
+    if (editor) {
       editor.commands.setContent(initialMarkdown);
     }
   }, [initialMarkdown, editor]);
@@ -162,8 +162,8 @@ const TextEditor = ({textEditorHandler, initialMarkdown}) => {
   
   return (
 
-    <div className='max-w-4xl my-8 mx-auto md:w-[90%] lg:max-w-[768px]'>
-        <section className='w-full bg-white flex items-center flex-wrap gap-x-4 border border-b-0 py-4 px-4 border-slate-300'>
+    <div className='max-w-4xl mx-auto md:w-[100%]'>
+        <section className='w-full bg-white flex items-center flex-wrap gap-x-4 border border-b-0 py-4 px-4 border-gray-400'>
             <button
                 onClick={boldHandler}
                 className={editor.isActive('bold') ? 'bg-gray-200 p-[2px] rounded' : 'p-[2px]'}

@@ -165,6 +165,48 @@ function UpdateOneStory({params}){
         }
     }
 
+    const updateImageHandler = async (e) => {
+        e.preventDefault();
+        let data = {}
+        try {
+            //Signed Temporarily URL
+            const {url} = await fetch('http://localhost:2000/api/stories/s3Url').then(res => res.json());
+            console.log(url, 'url');
+            //Upload image to S3
+            await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': "multi-part/form-data"
+                },
+                body: file
+            });
+            const imageUrl = url.split('?')[0];
+            data = {imageUrl: imageUrl}
+            console.log(data,'imageUrl');
+
+            const response = await fetch(`http://localhost:2000/api/stories/update-image-url/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            });
+    
+            if (response.ok) {
+                //send some alert for user to see the update was successful
+                const responseData = await response.json();
+                console.log(responseData); // This will contain the response data from your server
+            } else {
+                console.log('Error:', response.status);
+            }
+
+        } catch(error) {
+            console.log(error);
+        }
+
+       
+    }
+
     const mainStoryHandler = (text) => {
         const textEditorContent = text;
         setStoryBody(textEditorContent);
@@ -283,13 +325,19 @@ function UpdateOneStory({params}){
                         >UPDATE INTRO</button>
                      </div>
                  </div>
-                 <input 
-                     type="file" 
-                     accept="image/*"
-                     onChange={handleFileChange} 
-                     name="image-file"
-                     className="mb-20"
-                 />
+                 <div>
+                    <input 
+                         type="file" 
+                         accept="image/*"
+                         onChange={handleFileChange} 
+                         name="image-file"
+                         className="mb-20"
+                    />
+                    <button 
+                        onClick={updateImageHandler}
+                        className="font-1xl font-[700]  bg-blue w-[300px] h-[40px] text-white rounded-lg"
+                    >UPDATE IMAGE</button>
+                </div>
             </div>
         </div>
     )

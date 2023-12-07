@@ -19,5 +19,6 @@ body{
 }
 .prose{
     border: 1px solid grey;
+    max-width: none ;
 }
 

@@ -48,7 +48,7 @@ function CreateStories(){
 
         try {
             //getting signed url from server
-            const {url} = await fetch('http://localhost:2000/api/stories/s3Url').then(res => res.json());
+            const {url} = await fetch('http://3.76.220.77:2000/api/stories/s3Url').then(res => res.json());
             console.log(url);
             //Upload image to S3
             await fetch(url, {
@@ -61,7 +61,7 @@ function CreateStories(){
             const imageUrl = url.split('?')[0];
             const newStory = {...story, imageUrl: imageUrl};
            
-            const res = await fetch('http://localhost:2000/api/stories/create', {
+            const res = await fetch('http://3.76.220.77:2000/api/stories/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -85,18 +85,18 @@ function CreateStories(){
    
 
     return (
-        <div className='w-full h-full flex justify-start items-center flex-col'>
-            <h1 className='text-xl mb-12 mt-12'>Create Stories</h1>
+        <div className='w-[60%] h-full flex justify-start items-center flex-col'>
+            <h1 className='mb-8 font-[700] text-4xl mt-24'>Lets create a story</h1>
             <form 
                 action=""
                 name="createStory"
-                className='w-1/2 bg-white p-5 rounded-lg flex flex-col justify-center items-center'
+                className='w-full bg-white rounded-lg flex flex-col justify-center items-center'
             >
                 
                 <input 
                     type="text" 
                     name='title'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
+                    className='border mb-3 w-[100%] border-gray-400 p-2 rounded-lg'
                     placeholder='Title'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -104,7 +104,7 @@ function CreateStories(){
                 <input 
                     type="text" 
                     name='author'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
+                    className='border mb-3 w-[100%] border-gray-400 p-2 rounded-lg'
                     placeholder='Author'
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
@@ -113,7 +113,7 @@ function CreateStories(){
                 <input 
                     type="number" 
                     name='readTime'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
+                    className='border mb-3 w-[100%] border-gray-400 p-2 rounded-lg'
                     placeholder='Read Time'
                     value={readTime}
                     onChange={(e) => setReadTime(e.target.value)}
@@ -122,32 +122,36 @@ function CreateStories(){
                 <input 
                     type="number" 
                     name='recomendedAge'
-                    className='border mb-3 w-[90%] border-gray-400 p-2 rounded-lg'
+                    className='border mb-3 w-[100%] border-gray-400 p-2 rounded-lg'
                     placeholder='Recomended Age'
                     value={recomendedAge}
                     onChange={(e) => setRecomendedAge(e.target.value)}
 
                 />
-                <div className='width-full h-auto'>
-                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Introduction here (6-9 Sentences)</h3>
-                     <TextEditor
-                        textEditorHandler={introductionToStoryHandler}
-                    />
-                </div>
-                <div className='width-full h-auto'>
-                    <h3 className='font-[700] text-start ml-8 mb-[-25px] mt-6 text-2xl'>Write your Story here</h3>
+                <div className='w-full h-auto'>
+                    <h3 className='font-[700] text-gray-600  text-start mb-2 mt-12 text-2xl'>Write your Story here</h3>
                      <TextEditor
                         textEditorHandler={mainStoryHandler}
+                        styles='border border-gray-400 h-[50vh] p-4 w-full overflow-y-auto prose max-w-none outline-none'
                     />
                 </div>
+                <div className='w-full border-gray-400  mb-6 h-auto'>
+                    <h3 className='font-[700] mb-2 text-gray-600 text-start mt-12 text-2xl'>Write your Introduction here (6-9 Sentences)</h3>
+                     <TextEditor
+                        textEditorHandler={introductionToStoryHandler}
+                        styles='border border-gray-400 p-4 h-[30vh] w-full overflow-y-auto prose max-w-none outline-none'
+                    />
+                </div>
+               
                 <input 
                     type="file" 
                     accept="image/*"
                     onChange={handleFileChange} 
                     name="image-file"
+                    className='border mb-3 w-[100%] border-gray-400 p-2'
                 />
                 <button
-                    className=' w-[90%] bg-purple hover:bg-peach hover:text-black mt-6 mb-10 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
+                    className=' w-[100%] font-[700] text-xl bg-blue mb-36 hover:bg-peach hover:text-black mt-6 hover:bg-blue-800 z-90 text-white p-2 rounded-lg'
                     onClick={submitHandler}
                 >
                     Submit Story

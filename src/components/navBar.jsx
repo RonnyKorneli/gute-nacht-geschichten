@@ -18,12 +18,12 @@ export default function NavBar() {
                     </div>
                     <div className=''>
                         <Link href='/geschichten'>
-                            <h3>Schlafenszeit-Geschichten</h3>
+                            <h3 className="font-[500]">Gute Nacht Geschichten</h3>
                         </Link>
                     </div>
                     <div className=''>
                         <Link href='/geschichten/1'>
-                            <h3>Weihnachts-Geschichten</h3>
+                            <h3 className="font-[500]">Weihnachts-Geschichten</h3>
                         </Link>
                     </div>
                     <div 

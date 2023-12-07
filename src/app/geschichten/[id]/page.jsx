@@ -24,7 +24,7 @@ async function Story({params}){
     return(
         <>  
             <div className="w-full flex flex-col justify-center items-center prose md:max-w-full">
-                <div className="w-full flex flex-col justify-center items-center rounded-2xl prose md:max-w-full">
+                <div className="w-full flex flex-col justify-center items-center rounded-2xl md:max-w-full">
                     <h1 className="text-4xl md:text-6xl text-center w-[90%] md:w-[600px] font-[700] mt-32 mb-10">{story.title}</h1>
                     <div className="w-full h-[400px] md:h-[500px] rounded-4xl md:w-2/3 relative mb-6">
                         <Image

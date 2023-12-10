@@ -43,7 +43,20 @@ async function Story({params}){
                     <HtmlRenderer htmlContent={{ __html: storyIntroduction}} />
                 </div>
                 <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
-                    <HtmlRenderer htmlContent={{ __html: storyBody}} />
+                    {
+                        storyBody.mainStoryPartOne ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryPartOne}} /> : null
+                    }
+                </div>
+                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
+                    {
+                        storyBody.mainStoryBodyPartTwo ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryBodyPartTwo}} /> : null
+                    }
+                </div>
+                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
+                    {
+                        storyBody.mainStoryBodyPartThree ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryBodyPartThree}} /> : null
+                    
+                    }
                 </div>
                 <FirstStories />
 

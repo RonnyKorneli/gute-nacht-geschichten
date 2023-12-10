@@ -12,7 +12,7 @@ function UpdateStories({params}){
     
     useEffect(() => {
 
-        fetch('http://localhost:2000/api/stories/get-all-stories')
+        fetch('http://3.76.220.77:2000/api/stories/get-all-stories')
         .then(response => response.json())
         .then(data => {
             setStories(data);    

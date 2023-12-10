@@ -13,7 +13,9 @@ function CreateStories(){
     const [recomendedAge, setRecomendedAge] = useState('');
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
-    const [mainStory, setMainStory] = useState('');
+    const [mainStoryPartOne, setMainStoryPartOne] = useState('');
+    const [mainStoryPartTwo, setMainStoryPartTwo] = useState('');
+    const [mainStoryPartThree, setMainStoryPartThree] = useState('');
     const [introductionToStory, setIntroductionToStory] = useState('');
 
 
@@ -23,12 +25,23 @@ function CreateStories(){
         setFile(file);        
     }
 
-    const mainStoryHandler = (text) => {
+    const mainStoryHandlerPartOne = (text) => {
         const textEditorContent = text;
-        setMainStory(textEditorContent);
+        setMainStoryPartOne(textEditorContent);
 
     }
 
+    const mainStoryHandlerPartTwo = (text) => {
+        const textEditorContent = text;
+        setMainStoryPartTwo(textEditorContent);
+
+    }
+
+    const mainStoryHandlerPartThree = (text) => {
+        const textEditorContent = text;
+        setMainStoryPartThree(textEditorContent);
+
+    }
     const introductionToStoryHandler = (text) => {
         const textEditorContent = text;
         setIntroductionToStory(textEditorContent);
@@ -41,14 +54,18 @@ function CreateStories(){
             author: author, 
             readTime: readTime,
             recomendedAge: recomendedAge,
-            body: mainStory,
+            body: JSON.stringify({
+                mainStoryPartOne: mainStoryPartOne,
+                mainStoryPartTwo: mainStoryPartTwo,
+                mainStoryPartThree: mainStoryPartThree,
+            }),
             introduction: introductionToStory,
             imageUrl: imageUrl
         };
 
         try {
             //getting signed url from server
-            const {url} = await fetch('http://3.76.220.77:2000/api/stories/s3Url').then(res => res.json());
+            const { url } = await fetch(`http://3.76.220.77:2000/api/stories/s3Url`).then(res => res.json());
             console.log(url);
             //Upload image to S3
             await fetch(url, {
@@ -60,8 +77,9 @@ function CreateStories(){
             });
             const imageUrl = url.split('?')[0];
             const newStory = {...story, imageUrl: imageUrl};
+            console.log(newStory,'newStoryuzuzuzuz########');
            
-            const res = await fetch('http://3.76.220.77:2000/api/stories/create', {
+            const res = await fetch(`http://3.76.220.77:2000/api/stories/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -75,11 +93,11 @@ function CreateStories(){
             throw error;
         }
         //clear form
-        setAuthor('');
+       /*  setAuthor('');
         setBody('');
         setTitle('');
         setReadTime('');
-        setRecomendedAge('');
+        setRecomendedAge(''); */
     }
 
    
@@ -129,9 +147,23 @@ function CreateStories(){
 
                 />
                 <div className='w-full h-auto'>
-                    <h3 className='font-[700] text-gray-600  text-start mb-2 mt-12 text-2xl'>Write your Story here</h3>
+                    <h3 className='font-[700] text-gray-600  text-start mb-2 mt-12 text-2xl'>Write your Story here. PART ONE</h3>
                      <TextEditor
-                        textEditorHandler={mainStoryHandler}
+                        textEditorHandler={mainStoryHandlerPartOne}
+                        styles='border border-gray-400 h-[50vh] p-4 w-full overflow-y-auto prose max-w-none outline-none'
+                    />
+                </div>
+                <div className='w-full h-auto'>
+                    <h3 className='font-[700] text-gray-600  text-start mb-2 mt-12 text-2xl'>Write your Story here. PART TWO</h3>
+                     <TextEditor
+                        textEditorHandler={mainStoryHandlerPartTwo}
+                        styles='border border-gray-400 h-[50vh] p-4 w-full overflow-y-auto prose max-w-none outline-none'
+                    />
+                </div>
+                <div className='w-full h-auto'>
+                    <h3 className='font-[700] text-gray-600  text-start mb-2 mt-12 text-2xl'>Write your Story here. PART THREE</h3>
+                     <TextEditor
+                        textEditorHandler={mainStoryHandlerPartThree}
                         styles='border border-gray-400 h-[50vh] p-4 w-full overflow-y-auto prose max-w-none outline-none'
                     />
                 </div>

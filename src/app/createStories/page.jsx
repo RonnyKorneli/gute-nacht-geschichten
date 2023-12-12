@@ -54,18 +54,18 @@ function CreateStories(){
             author: author, 
             readTime: readTime,
             recomendedAge: recomendedAge,
-            body: JSON.stringify({
+            body: {
                 mainStoryPartOne: mainStoryPartOne,
                 mainStoryPartTwo: mainStoryPartTwo,
                 mainStoryPartThree: mainStoryPartThree,
-            }),
+            },
             introduction: introductionToStory,
             imageUrl: imageUrl
         };
 
         try {
             //getting signed url from server
-            const { url } = await fetch(`http://3.76.220.77:2000/api/stories/s3Url`).then(res => res.json());
+            const { url } = await fetch(`http://localhost:2000/api/stories/s3Url`).then(res => res.json());
             console.log(url);
             //Upload image to S3
             await fetch(url, {
@@ -77,9 +77,9 @@ function CreateStories(){
             });
             const imageUrl = url.split('?')[0];
             const newStory = {...story, imageUrl: imageUrl};
-            console.log(newStory,'newStoryuzuzuzuz########');
+
            
-            const res = await fetch(`http://3.76.220.77:2000/api/stories/create`, {
+            const res = await fetch(`http://localhost:2000/api/stories/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

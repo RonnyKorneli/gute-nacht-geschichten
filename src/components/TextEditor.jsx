@@ -130,7 +130,11 @@ const TextEditor = ({textEditorHandler, initialMarkdown, styles}) => {
 
   useEffect(() => {
     if (editor) {
-      editor.commands.setContent(initialMarkdown);
+      const { from, to } = editor.state.selection;
+      editor.commands.setContent(initialMarkdown, false, {
+        preserveWhitespace: 'full',
+      });
+      editor.commands.setTextSelection({ from, to });
     }
   }, [initialMarkdown, editor]);
 

@@ -19,7 +19,7 @@ async function Story({params}){
     const storyIntroduction = await story.introduction;
 
 
-    console.log(typeof storyBody, 'story inside story.jsx');
+    console.log(story.body.mainStoryPartOne, 'story inside story.jsxxcxcxcxcx###############');
 
     return(
         <>  
@@ -42,19 +42,19 @@ async function Story({params}){
                 <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[200]">
                     <HtmlRenderer htmlContent={{ __html: storyIntroduction}} />
                 </div>
-                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
+                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[200]">
                     {
-                        storyBody.mainStoryPartOne ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryPartOne}} /> : null
+                        story.body.mainStoryPartOne ? <HtmlRenderer htmlContent={{ __html: story.body.mainStoryPartOne}} /> : null
                     }
                 </div>
-                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
+                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[200]">
                     {
-                        storyBody.mainStoryBodyPartTwo ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryBodyPartTwo}} /> : null
+                        story.body.mainStoryPartTwo ? <HtmlRenderer htmlContent={{ __html: story.body.mainStoryPartTwo}} /> : null
                     }
                 </div>
-                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[500]">
+                <div className="flex justify-center w-[95%] md:w-[70%] text-2xl font-[200]">
                     {
-                        storyBody.mainStoryBodyPartThree ? <HtmlRenderer htmlContent={{ __html: storyBody.mainStoryBodyPartThree}} /> : null
+                        story.body.mainStoryPartThree ? <HtmlRenderer htmlContent={{ __html: story.body.mainStoryPartThree}} /> : null
                     
                     }
                 </div>

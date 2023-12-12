@@ -4,7 +4,7 @@ import TextEditor from '../../../../components/TextEditor.jsx'
 import React, { useEffect, useState } from 'react';
 
 async function getStory(id) {
-    const res = await fetch(`http://3.76.220.77:2000'/api/stories/get-story/${id}`, {
+    const res = await fetch(`http://localhost:2000/api/stories/get-story/${id}`, {
         next: {
             revalidate: 60
         }
@@ -26,6 +26,8 @@ function UpdateOneStory({params}){
     const [recomendedAge, setRecomendedAge] = useState('');
     const [storyId, setStoryId] = useState('');
     const [file, setFile] = useState(null);
+    const [editor, setEditor] = useState(null);
+
 
     const titleForPage = story.title;
 
@@ -62,7 +64,7 @@ function UpdateOneStory({params}){
         const data = {
             title: title,
         }
-        const response = await fetch(`http://3.76.220.77:2000'/api/stories/update-title/${id}`, {
+        const response = await fetch(`http://localhost:2000/api/stories/update-title/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -154,7 +156,7 @@ function UpdateOneStory({params}){
                 mainStoryPartThree: storyBodyPartThree,
             }
         }
-        const response = await fetch(`http://3.76.220.77:2000'/api/stories/update-body/${id}`, {
+        const response = await fetch(`http://localhost:2000/api/stories/update-body/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -176,7 +178,7 @@ function UpdateOneStory({params}){
         const data = {
             introduction: storyIntroduction,
         }
-        const response = await fetch(`http://3.76.220.77:2000/api/stories/update-intro/${id}`, {
+        const response = await fetch(`http://localhost:2000/api/stories/update-intro/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

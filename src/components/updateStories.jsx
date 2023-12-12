@@ -1,10 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import StoryCard from '../../../components/storyCards';
-import HeroImage from '../../../components/heroImage';
-
-
+import StoryCard from './storyCards.jsx';
 
 function UpdateStories({params}){
 
@@ -25,7 +22,6 @@ function UpdateStories({params}){
     return(
             
         <div className='w-full' >
-           
             <div className='w-full flex flex-col mt-[100px] rounded-3xl bg-white relative items-center justify-center md:mt-[130px]'>
                 <h1 className='text-8xl font-[700]'>UPDATE Story</h1>
                 <div className='flex flex-col w-full rounded-3xl relative pt-20 items-center justify-center flex-wrap md:flex-row md:justify-evenly  lg:w-[80%]'>
@@ -43,7 +39,7 @@ function UpdateStories({params}){
                             author={story.author}
                             readTime={story.readTime}
                             reating={story.rating}
-                            urlSection={'geschichten/update-stories'}
+                            urlSection={'create-stories-page/update-stories-page'}
                            />
                         )
                    })

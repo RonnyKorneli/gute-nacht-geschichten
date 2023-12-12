@@ -215,7 +215,7 @@ export default  function FirstStories() {
             </div>
             <div className='flex justify-between w-1/3 '>
                 <Link 
-                    href='/createStories'>
+                    href='/create-stories-page'>
                     <button className='bg-blue text-white font-[700] text-xl w-[200px] h-[50px] rounded-3xl mb-10'>Create Stories</button>
                 </Link>
                 <Link 

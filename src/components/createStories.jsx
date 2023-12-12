@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react';
-import TextEditor from '../../components/TextEditor.jsx'
+import React, { useState, useEffect } from 'react';
+import TextEditor from './TextEditor.jsx'
 
 
 function CreateStories(){
@@ -17,6 +17,9 @@ function CreateStories(){
     const [mainStoryPartTwo, setMainStoryPartTwo] = useState('');
     const [mainStoryPartThree, setMainStoryPartThree] = useState('');
     const [introductionToStory, setIntroductionToStory] = useState('');
+    const [token, setToken] = useState('');
+
+    console.log(token, "token")
 
 
     const handleFileChange = async (e) => {
@@ -99,8 +102,6 @@ function CreateStories(){
         setReadTime('');
         setRecomendedAge(''); */
     }
-
-   
 
     return (
         <div className='w-[60%] h-full flex justify-start items-center flex-col'>

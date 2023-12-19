@@ -19,8 +19,6 @@ function CreateStories(){
     const [introductionToStory, setIntroductionToStory] = useState('');
     const [token, setToken] = useState('');
 
-    console.log(token, "token")
-
 
     const handleFileChange = async (e) => {
         e.preventDefault()
@@ -31,20 +29,18 @@ function CreateStories(){
     const mainStoryHandlerPartOne = (text) => {
         const textEditorContent = text;
         setMainStoryPartOne(textEditorContent);
-
     }
 
     const mainStoryHandlerPartTwo = (text) => {
         const textEditorContent = text;
         setMainStoryPartTwo(textEditorContent);
-
     }
 
     const mainStoryHandlerPartThree = (text) => {
         const textEditorContent = text;
         setMainStoryPartThree(textEditorContent);
-
     }
+
     const introductionToStoryHandler = (text) => {
         const textEditorContent = text;
         setIntroductionToStory(textEditorContent);
@@ -80,12 +76,14 @@ function CreateStories(){
             });
             const imageUrl = url.split('?')[0];
             const newStory = {...story, imageUrl: imageUrl};
+            const token = localStorage.getItem('token');
 
            
             const res = await fetch(`http://localhost:2000/api/stories/create`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(newStory)
             });

@@ -2,19 +2,27 @@
 
 import React, {useEffect, useState} from 'react'
 import CreateStories from '../../components/createStories.jsx'
+import CheckTokenExpiration from '../../../lib/tokenUtils.js'
 
 
 function CreateStoriesPage(){
 
     const [token, setToken] = useState('')
-    console.log(token, "token")
+    console.log(token, 'tokenIn Pageeee')    
 
     useEffect(() => {
-        // Check if the user is logged in (e.g., by validating the token)
-        // Update the token state accordingly
-        const storedToken = localStorage.getItem('token');
-        setToken(storedToken);
-      }, []);
+        const tokenKey = 'token'; // Define the token key
+
+        if (CheckTokenExpiration(tokenKey)) {
+            const storedToken = localStorage.getItem(tokenKey);
+            setToken(storedToken);
+            // Token is still valid, proceed with using it
+        } else {
+            setToken(null);
+        }
+    }, []);
+
+      
 
     return(
         <>

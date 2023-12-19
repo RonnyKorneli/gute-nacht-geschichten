@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react'
 import UpdateStories from '../../../components/updateStories.jsx'
+import CheckTokenExpiration from '../../../../lib/tokenUtils.js'
 
 
 function UpdateStoriesPage(){
@@ -10,11 +11,16 @@ function UpdateStoriesPage(){
     console.log(token, "token")
 
     useEffect(() => {
-        // Check if the user is logged in (e.g., by validating the token)
-        // Update the token state accordingly
-        const storedToken = localStorage.getItem('token');
-        setToken(storedToken);
-      }, []);
+        const tokenKey = 'token'; // Define the token key
+
+        if (CheckTokenExpiration(tokenKey)) {
+            const storedToken = localStorage.getItem(tokenKey);
+            setToken(storedToken);
+            // Token is still valid, proceed with using it
+        } else {
+            setToken(null);
+        }
+    }, []);
 
     return(
         <>

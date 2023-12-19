@@ -8,11 +8,6 @@ function Login(){
     const [password, setPassword] = useState('')
     const [token, setToken] = useState('')
 
-    // Getting  the Token later
-    const storedToken = localStorage.getItem('authToken');
-
-    console.log(token, "token")
-
     const submitHandler = (e) => {
         e.preventDefault()
 

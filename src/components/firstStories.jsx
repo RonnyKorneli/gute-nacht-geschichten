@@ -1,230 +1,66 @@
-import React from 'react';
-import Image from 'next/image'
-import Link from 'next/link'
+'use client'
 
+import React, { useState, useEffect } from 'react';
+import StoryCard from '../components/storyCards.jsx';
+import HeroImage from '../components/heroImage';
+import Link from 'next/link';
 
+//http://3.76.220.77:2000
 export default  function FirstStories() {
+    const [stories, setStories] = useState([]);
+    const firstNineStories = stories.slice(0, 9);
 
-   
+    useEffect(() => {
+
+        fetch('http://localhost:2000/api/stories/get-all-stories')
+        .then(response => response.json())
+        .then(data => {
+            setStories(data);    
+
+        });
+
+    }, []);
+
+
 
     return(
         <section className='w-full pt-20 z-20 flex rounded-3xl flex-col items-center'>
-             <div className='flex flex-col justify-center items-center w-full lg:flex lg:flex-row'>
-                <div 
-                    className='flex flex-col mb-10 justify-center items-center w-[80%] lg:h-auto lg:w-auto lg:mr-8'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 1</h3>
-                    </div>
-                </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center items-center w-[80%] lg:h-auto lg:w-auto'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute  top-2 text-2xl font-[700] '>Title 2</h3>
-                    </div>
-                </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center items-center w-[80%] lg:h-auto lg:w-auto lg:ml-8'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 3</h3>
-                    </div>
-                </div>
+            <div className='flex flex-col w-full rounded-3xl relative pt-20 items-center justify-center flex-wrap md:flex-row md:justify-evenly  lg:w-[80%]'>
+                {
+                   firstNineStories.map((story, index) => {
+                        return(
+                           <StoryCard
+                            key={index}
+                            _id={story._id}
+                            recomendedAge={story.recomendedAge}
+                            title={story.title}
+                            body={story.body}
+                            imageUrl={story.imageUrl}
+                            author={story.author}
+                            readTime={story.readTime}
+                            rating={story.reating}
+                            urlSection='geschichten'
+                           />
+                        )
+                   })
+                }
             </div>
-             <div className='flex flex-col justify-center items-center w-full lg:flex lg:flex-row '>
-                <div 
-                    className='flex flex-col mb-10 justify-center  items-center w-[80%] lg:h-auto lg:w-auto lg:mr-8'
-                    datatype='thumbnail'
-                >
+                <div className='flex pb-12'>
                     <Link 
-                        href='/geschichten/1'
-                        className='w-full  relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
+                        href='/create-stories-page/update-stories-page'
+                        className='w-[200px] mr-12 h-[50px] bg-pink text-white text-center flex justify-center items-center rounded-3xl mt-10'
+                        >
+                            UPDATE SORIES
                     </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 4</h3>
-                    </div>
-                </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center  items-center w-[80%] lg:h-auto lg:w-auto'
-                    datatype='thumbnail'
-                >
                     <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
+                        href='/create-stories-page'
+                        className='w-[200px] h-[50px] bg-pink text-white text-center flex justify-center items-center rounded-3xl mt-10'
+                        >
+                            CREATE STORIES
                     </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute  top-2 text-2xl font-[700] '>Title 5</h3>
-                    </div>
                 </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center  items-center w-[80%] lg:h-auto lg:w-auto lg:ml-8'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 6</h3>
-                    </div>
-                </div>
-            </div>
-            <div className='flex flex-col justify-center items-center w-full lg:flex lg:flex-row '>
-                <div 
-                    className='flex flex-col mb-10 justify-center  items-center w-[80%] lg:h-auto lg:w-auto lg:mr-8'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full  relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 7</h3>
-                    </div>
-                </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center items-center w-[80%] lg:h-auto lg:w-auto'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute  top-2 text-2xl font-[700] '>Title 8</h3>
-                    </div>
-                </div>
-                <div 
-                    className='flex flex-col mb-10 justify-center  items-center w-[80%] lg:h-auto lg:w-auto lg:ml-8'
-                    datatype='thumbnail'
-                >
-                    <Link 
-                        href='/geschichten/1'
-                        className='w-full relative md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
-                    >
-                         <Image
-                             src="/placeholder.png"
-                             className='rounded-3xl object-cover'
-                             fill
-                             placeholder='blur'
-                             blurDataURL="/placeholder.png"
-                             alt="Picture of the author"
-                             _id='1'
-                         />
-                    </Link>
-                    <div className='w-full lg:mb-24 lg:relative '>
-                        <h3 className='text-start lg:absolute top-2 text-2xl font-[700] '>Title 9</h3>
-                    </div>
-                </div>
-            </div>
-            <div className='flex justify-between w-1/3 '>
-                <Link 
-                    href='/create-stories-page'>
-                    <button className='bg-blue text-white font-[700] text-xl w-[200px] h-[50px] rounded-3xl mb-10'>Create Stories</button>
-                </Link>
-                <Link 
-                    href='/create-stories-page/update-stories-page'>
-                    <button className='bg-blue text-white font-[700] text-xl w-[200px] h-[50px] rounded-3xl mb-10'>Update Stories</button>
-                </Link>
-            </div>
         </section>
     )
 }
 
- 
+

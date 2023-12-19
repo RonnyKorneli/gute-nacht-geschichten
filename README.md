@@ -1,10 +1,49 @@
 ### Next worksteps....
-- Connect to Backend
-- Make Design
-- Dockerize Application with DB 
-- Check GraphQL
-- some text for testing...
 
+- Dockerize Application with DB
+- [x] Dockerize backend
+- Dockerize Frontend
+- [x] Install Docker on on EC2 for Backend
+- Install Docker on on EC2 for Frontend
+- [x] Make Frontpage load the 9 first stories from Backend
+- Read about find out out Next.js to production
+- Find out if I should use Lambda or EC2 for frontend
+- Set up Git hub actions
+- Make 40 Stories
+- [ ] Create I am Julian Page
+- Make Blog space with 9 entries.
+- Datenschutz
+- Google Adsense
+- Impressum
+- SEO Text underneath stories on front-page
+- Make update stories layout different per
+- Finish the login topic
+- Create a component that shows all images in the s3 bucket
+- This component should be able to delete images
+- Make an E mail call to action thing
+- Mobile burger menu
+- Check general responsiveness
+- Buy GHerman Domain
+- Buy Norwegian domain
+- Check prizing in AWS
+- Work on List of Julian’s books
+
+####################
+
+### AWS EC2 INSTANCE
+
+Assuming you choose a t3a.micro instance for simplicity, which is a cost-effective option.
+Monthly cost: $0.0108 per hour _ 24 hours/day _ 30 days/month = $7.776.
+
+### Data Transfer OUT to Internet:
+
+AWS offers 100GB of data transfer out to the internet for free each month.
+For simplicity, let's assume your blog generates 10GB of additional data transfer out per month.
+Monthly cost: (10GB - 100GB free) \* $0.09 per GB = $0.90.
+
+### Total Estimated Monthly Cost:
+
+EC2 Instance Cost + Data Transfer Cost = $7.776 + $0.90 = $8.676.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -43,6 +82,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ## Color Scheme
-Hex: 4C4556 / 872642 / F6C026 / A0D3F9
+
+- blue: #7071E8,
+- purple: #C683D7,
+- pink: #ED9ED6,
+- peach: #FFC7C7

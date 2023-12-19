@@ -40,7 +40,8 @@ function Login(){
 
     return(
         <div className="mt-[150px] text-6xl flex justify-center bg-slate-400 w-full font-[700]">
-            <form 
+            <h1>Register</h1>
+            {/* <form 
                 onSubmit={submitHandler}
                 className="flex flex-col gap-y-4 justify-center items-start"
             >
@@ -69,7 +70,7 @@ function Login(){
                     onChange={(e) => setRole(e.target.value)}
                 />
                 <button className="border border-black" >Submit</button>
-            </form>
+            </form> */}
         </div>
     )
 }

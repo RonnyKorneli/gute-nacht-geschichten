@@ -17,6 +17,7 @@ function  StoryCard({ title, _id, imageUrl, priority, urlSection }) {
 
         console.log(imageUrl, 'imageUrl inside storyCard')
 
+
     return(
 
         <div className='flex flex-col justify-center relative  items-center w-[95%] mb-12 bg-white lg:h-auto lg:w-[300px] lg:m-2'>
@@ -29,13 +30,13 @@ function  StoryCard({ title, _id, imageUrl, priority, urlSection }) {
                     className='w-full self-start  md:h-[400px] h-[250px] lg:h-[200px] lg:w-[300px]'
                 >
                         <Image
-                            src={imageUrl}
+                            src={imageUrl ? imageUrl[0] : null}
                             className='rounded-3xl object-cover'
                             fill
                             placeholder='blur'
-                            blurDataURL={imageUrl}
+                            blurDataURL={imageUrl ? imageUrl[0] : null}
                             alt="Picture of the author"
-                            _id={_id}
+                            _id={_id ? _id : null}
                         />
                 </Link>
             </div>

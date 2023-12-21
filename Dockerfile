@@ -1,25 +1,22 @@
 
-# Use a specific version of node based on your project requirements
-FROM node:18-alpine
+FROM node:18
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-# Install all dependencies, including `json-server` if it is not in package.json
 RUN npm install
-RUN npm install -g json-server
 
-# Copy the rest of the application
 COPY . .
 
-# Expose the port your app runs on
+# Set environment variable for the backend API URL
+ENV REACT_APP_API_URL=http://3.76.220.77:2000
+
+# Build the Next.js app
+RUN npm run build
+
+# Expose the port that the app will run on
 EXPOSE 3000
 
-# Expose the port for json-server if it's going to run on a different port
-EXPOSE 4000
-
-# Run both your application and json-server using a command runner like `concurrently`
-CMD ["sh", "-c", "npm run dev & json-server --watch db.json --port 4000"]
+# Start the Next.js app
+CMD ["npm", "start"]

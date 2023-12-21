@@ -1,21 +1,11 @@
-version: '3.8'
+version: '3'
 
 services:
-  web:
-    build: .
-    image: my-node-app
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - "4000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    
-  json-server:
-    image: node:18-alpine
-    volumes:
-      - ./data:/data
+  nextjs-app:
+    image: bedtime-stories
+    container_name: nextjs-app-container
     ports:
       - "3000:3000"
-    command: sh -c "npm install -g json-server && json-server --watch /data/db.json --port 3000 --host 0.0.0.0"
+    environment:
+      - REACT_APP_API_URL=http://3.76.220.77:2000
+     

@@ -23,7 +23,7 @@ function Stories({params}){
 
     }, []);
 
-
+    console.log(stories, 'stories inside stories')
     return(
             
         <div className='w-full' >

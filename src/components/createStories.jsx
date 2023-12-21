@@ -11,20 +11,44 @@ function CreateStories(){
     const [body, setBody] = useState('');
     const [readTime, setReadTime] = useState('');
     const [recomendedAge, setRecomendedAge] = useState('');
-    const [file, setFile] = useState(null);
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageOne, setImageOne] = useState(null);
+    const [imageTwo, setImageTwo] = useState(null);
+    const [imageThree, setImageThree] = useState(null);
+    const [imageFour, setImageFour] = useState(null);
+    const [imageUrl, setImageUrl] = useState([]);
     const [mainStoryPartOne, setMainStoryPartOne] = useState('');
     const [mainStoryPartTwo, setMainStoryPartTwo] = useState('');
     const [mainStoryPartThree, setMainStoryPartThree] = useState('');
     const [introductionToStory, setIntroductionToStory] = useState('');
     const [token, setToken] = useState('');
+    const [arrayOfImages, setArrayOfImages] = useState([]);
 
+    const handleImageChange = (event, imageNumber) => {
+        // Use imageNumber to identify which input is being changed
+        const file = event.target.files[0];
+    
+        // Perform actions based on the selected image input
+        switch (imageNumber) {
+          case 1:
+            arrayOfImages.push(file);
 
-    const handleFileChange = async (e) => {
-        e.preventDefault()
-        const file = e.target.files[0];
-        setFile(file);        
-    }
+            break;
+          case 2:
+            arrayOfImages.push(file);
+            
+            break;
+          case 3:
+            arrayOfImages.push(file);
+            
+            break;
+          case 4:
+            arrayOfImages.push(file);
+            
+            break;
+          default:
+            break;
+        }
+      };
 
     const mainStoryHandlerPartOne = (text) => {
         const textEditorContent = text;
@@ -63,22 +87,27 @@ function CreateStories(){
         };
 
         try {
-            //getting signed url from server
-            const { url } = await fetch(`http://localhost:2000/api/stories/s3Url`).then(res => res.json());
-            console.log(url);
-            //Upload image to S3
-            await fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': "multi-part/form-data"
-                },
-                body: file
-            });
-            const imageUrl = url.split('?')[0];
-            const newStory = {...story, imageUrl: imageUrl};
             const token = localStorage.getItem('token');
-
-           
+            //getting signed url from server
+            const updatedImageUrls = [];
+            console.log(updatedImageUrls, 'array of imagesss arraryr in the house');
+            await Promise.all(arrayOfImages.map(async (image) => {
+                const { url } = await fetch(`http://localhost:2000/api/stories/s3Url`).then(res => res.json());
+                console.log(url);
+                //Upload image to S3
+                await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': "multi-part/form-data"
+                    },
+                    body: image
+                });
+                const imageUrl = url.split('?')[0];
+                updatedImageUrls.push(imageUrl);
+                
+            }));
+            
+            const newStory = {...story, imageUrl: updatedImageUrls};
             const res = await fetch(`http://localhost:2000/api/stories/create`, {
                 method: 'POST',
                 headers: {
@@ -173,11 +202,35 @@ function CreateStories(){
                         styles='border border-gray-400 p-4 h-[30vh] w-full overflow-y-auto prose max-w-none outline-none'
                     />
                 </div>
-               
+               <h3 className='self-start text-xl font-[500]'>Image NR1</h3>
                 <input 
                     type="file" 
                     accept="image/*"
-                    onChange={handleFileChange} 
+                    onChange={(event) => handleImageChange(event, 1)} 
+                    name="image-file"
+                    className='border mb-3 w-[100%] border-gray-400 p-2'
+                />
+                <h3 className='self-start text-xl font-[500]'>Image NR2</h3>
+                <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={(event) => handleImageChange(event, 2)} 
+                    name="image-file"
+                    className='border mb-3 w-[100%] border-gray-400 p-2'
+                />
+                <h3 className='self-start text-xl font-[500]'>Image NR3</h3>
+                <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={(event) => handleImageChange(event, 3)}
+                    name="image-file"
+                    className='border mb-3 w-[100%] border-gray-400 p-2'
+                />
+                <h3 className='self-start text-xl font-[500]'>Image NR4</h3>
+                <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={(event) => handleImageChange(event, 4)}
                     name="image-file"
                     className='border mb-3 w-[100%] border-gray-400 p-2'
                 />

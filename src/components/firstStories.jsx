@@ -18,10 +18,10 @@ export default  function FirstStories() {
             setStories(data);    
 
         });
-
+        
     }, []);
-
-
+    
+    console.log(stories, 'stories inside Firststories')
 
     return(
         <section className='w-full pt-20 z-20 flex rounded-3xl flex-col items-center'>

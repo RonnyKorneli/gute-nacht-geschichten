@@ -9,7 +9,7 @@ function UpdateStories({params}){
     
     useEffect(() => {
 
-        fetch('http://3.76.220.77:2000/api/stories/get-all-stories')
+        fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/get-all-stories`)
         .then(response => response.json())
         .then(data => {
             setStories(data);    

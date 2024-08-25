@@ -92,7 +92,7 @@ function CreateStories(){
             const updatedImageUrls = [];
             console.log(updatedImageUrls, 'array of imagesss arraryr in the house');
             await Promise.all(arrayOfImages.map(async (image) => {
-                const { url } = await fetch(`http://localhost:2000/api/stories/s3Url`).then(res => res.json());
+                const { url } = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/s3Url`).then(res => res.json());
                 console.log(url);
                 //Upload image to S3
                 await fetch(url, {
@@ -108,7 +108,7 @@ function CreateStories(){
             }));
             
             const newStory = {...story, imageUrl: updatedImageUrls};
-            const res = await fetch(`http://localhost:2000/api/stories/create`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

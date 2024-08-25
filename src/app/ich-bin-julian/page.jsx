@@ -32,15 +32,18 @@ export default function IchBinJulian(){
                 </div>
             </div>
             <section className='w-[92%] my-12 rounded-[80px] relative py-4 px-12 mx-12 bg-peach'>
-                <h3 className='text-3xl text-slate-800 mt-8 font-[700]'>Hier ist meine Liste <br/> der besten Harry Potter-Bücher:</h3>
+                <h3 className='text-3xl text-slate-800 mt-8 font-[700]'>Hier ist meine Liste <br/> über Bücher die ich gelesen habe:</h3>
                 <ol className='text-xl list-decimal font-[500] py-12 px-4'>
-                    <li>Harry number 1</li>
-                    <li>Harry number 2</li>
-                    <li>Harry number 3</li>
-                    <li>Harry number 4</li>
-                    <li>Harry number 5</li>
-                    <li>Harry number 6</li>
-                    <li>Harry number 7</li>
+                    <li>Harry Potter - Der Stein der Weisen</li>
+                    <li>Harry Potter - Und die Kammers des Schreckens</li>
+                    <li>Harry Potter - Und der Gefangener von Askabah</li>
+                    <li>Harry Potter - Und er Feuerkelch</li>
+                    <li>Harry Potter - Und der Orden ders Phönix 5</li>
+                    <li>Harry Potter - Und der halb blut Prinz</li>
+                    <li>Harry Potter - Und die Heiligtümer des Todes</li>
+                    <li>Das Weihnachtsschwein</li>
+                    <li>Der Ickabo</li>
+                    <li>Der Hobbit</li>
                 </ol>
 
                 <div className='w-full flex justify-start '>

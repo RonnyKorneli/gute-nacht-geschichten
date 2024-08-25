@@ -4,7 +4,7 @@ import TextEditor from '../../../../components/TextEditor.jsx'
 import React, { useEffect, useState } from 'react';
 
 async function getStory(id) {
-    const res = await fetch(`http://localhost:2000/api/stories/get-story/${id}`, {
+    const res = await fetch(`http://3.76.220.77:2000/api/stories/get-story/${id}`, {
         next: {
             revalidate: 60
         }
@@ -64,7 +64,7 @@ function UpdateOneStory({params}){
         const data = {
             title: title,
         }
-        const response = await fetch(`http://localhost:2000/api/stories/update-title/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-title/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function UpdateOneStory({params}){
         const data = {
             author: author,
         }
-        const response = await fetch(`http://3.76.220.77:2000'/api/stories/update-author/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-author/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ function UpdateOneStory({params}){
         const data = {
             readTime: readTime,
         }
-        const response = await fetch(`http://3.76.220.77:2000'/api/stories/update-read-time/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-read-time/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ function UpdateOneStory({params}){
         const data = {
             recomendedAge: recomendedAge,
         }
-        const response = await fetch(`http://3.76.220.77:2000'/api/stories/update-recomended-age/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-recomended-age/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ function UpdateOneStory({params}){
                 mainStoryPartThree: storyBodyPartThree,
             }
         }
-        const response = await fetch(`http://localhost:2000/api/stories/update-body/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-body/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -178,7 +178,7 @@ function UpdateOneStory({params}){
         const data = {
             introduction: storyIntroduction,
         }
-        const response = await fetch(`http://localhost:2000/api/stories/update-intro/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-intro/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -200,7 +200,7 @@ function UpdateOneStory({params}){
         let data = {}
         try {
             //Signed Temporarily URL
-            const {url} = await fetch('http://3.76.220.77:2000/api/stories/s3Url').then(res => res.json());
+            const {url} = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/s3Url`).then(res => res.json());
             console.log(url, 'url');
             //Upload image to S3
             await fetch(url, {
@@ -214,7 +214,7 @@ function UpdateOneStory({params}){
             data = {imageUrl: imageUrl}
             console.log(data,'imageUrl');
 
-            const response = await fetch(`http://3.76.220.77:2000/api/stories/update-image-url/${id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-image-url/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

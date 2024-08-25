@@ -9,10 +9,12 @@ import Link from 'next/link';
 export default  function FirstStories() {
     const [stories, setStories] = useState([]);
     const firstNineStories = stories.slice(0, 9);
+    const URL = process.env.NEXT_PUBLIC_URL_BACKEND;
+    console.log(URL, 'URL inside Firststories')
 
     useEffect(() => {
 
-        fetch('http://localhost:2000/api/stories/get-all-stories')
+        fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/get-all-stories`)
         .then(response => response.json())
         .then(data => {
             setStories(data);    

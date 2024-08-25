@@ -3,7 +3,7 @@ import FirstStories from "../../../components/firstStories.jsx";
 import HtmlRenderer from '../../../components/htmlRender.jsx'
 
 async function getStory(id) {
-    const res = await fetch(`http://localhost:2000/api/stories/get-story/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/get-story/${id}`, {
         next: {
             revalidate: 60
         }
@@ -28,11 +28,11 @@ async function Story({params}){
                     <h1 className="text-4xl md:text-6xl text-center w-[90%] md:w-[600px] font-[700] mt-32 mb-10">{story.title}</h1>
                     <div className="w-full h-[400px] md:h-[500px] rounded-4xl md:w-2/3 relative mb-6">
                         <Image
-                            src={story.imageUrl}
+                            src={story.imageUrl[0]}
                             className='m-0 object-cover object-center rounded-2xl'
                             fill
                             placeholder='blur'
-                            blurDataURL={story.imageUrl}
+                            blurDataURL={story.imageUrl[0]}
                             alt="Picture of the author"
                             _id={id}
         

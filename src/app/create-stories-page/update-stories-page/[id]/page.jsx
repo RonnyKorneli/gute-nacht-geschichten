@@ -27,11 +27,14 @@ function UpdateOneStory({params}){
     const [storyId, setStoryId] = useState('');
     const [file, setFile] = useState(null);
     const [editor, setEditor] = useState(null);
-
+    const [gettingStory,, setGettingStory] = useState(null);
 
     const titleForPage = story.title;
 
     const id = params.id;
+    console.log(id, "id is here");
+    console.log(story, "story is here");
+
     useEffect(() => {
         getStory(id)
             .then((story) => {
@@ -53,6 +56,7 @@ function UpdateOneStory({params}){
             });
     }, [id]);
 
+   
     const handleFileChange = async (e) => {
         e.preventDefault()
         const file = e.target.files[0];
@@ -75,9 +79,9 @@ function UpdateOneStory({params}){
         if (response.ok) {
             //send some alert for user to see the update was successful
             const responseData = await response.json();
-            console.log(responseData); // This will contain the response data from your server
+            console.log(responseData, "This is respons data"); // This will contain the response data from your server
         } else {
-            console.log('Error:', response.status);
+            console.log('Error from title:', response.status);
         }
     }
 
@@ -149,6 +153,8 @@ function UpdateOneStory({params}){
 
     const sendStoryHandler = async (e) => {
         e.preventDefault();
+
+        const token = localStorage.getItem('token');
         const data = {
             body: {
                 mainStoryPartOne: storyBodyPartOne,
@@ -159,7 +165,8 @@ function UpdateOneStory({params}){
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-body/${id}`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(data),
         });
@@ -175,13 +182,18 @@ function UpdateOneStory({params}){
 
     const sendIntroHandler = async (e) => {
         e.preventDefault();
+
+        // Retrieve the JWT token from local storage
+        const token = localStorage.getItem('token');
+
         const data = {
             introduction: storyIntroduction,
         }
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/stories/update-intro/${id}`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Include the JWT token here
             },
             body: JSON.stringify(data),
         });
@@ -189,9 +201,9 @@ function UpdateOneStory({params}){
         if (response.ok) {
             //send some alert for user to see the update was successful
             const responseData = await response.json();
-            console.log(responseData); // This will contain the response data from your server
+            console.log(responseData, "token", token); // This will contain the response data from your server
         } else {
-            console.log('Error:', response.status);
+            console.log('Error:', response.status, "token", token);
         }
     }
 
